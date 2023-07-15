@@ -36,6 +36,11 @@ const nextConfig = {
         destination: '/apps',
         permanent: false,
       },
+      {
+        source: '/console/api/:path*',
+        destination: 'http://127.0.0.1:5001/console/api/:path*',
+        permanent: true,
+      },
     ]
   },
 }
