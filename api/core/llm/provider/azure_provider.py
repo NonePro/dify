@@ -84,7 +84,7 @@ class AzureProvider(BaseProvider):
         # TODO: change to dict when implemented
         return dict
 
-    def config_validate(self, config: Union[dict | str]):
+    def config_validate(self, config: Union[dict , str]):
         """
         Validates the given config.
         """
@@ -102,19 +102,19 @@ class AzureProvider(BaseProvider):
                                           "'gpt-3.5-turbo', 'text-embedding-ada-002' (required) "
                                           "and 'gpt-4', 'gpt-35-turbo-16k' (optional).")
 
-            fixed_model_ids = [
-                'text-davinci-003',
-                'gpt-35-turbo',
-                'text-embedding-ada-002'
-            ]
+            # fixed_model_ids = [
+            #     'text-davinci-003',
+            #     'gpt-35-turbo',
+            #     'text-embedding-ada-002',
+            # ]
 
-            current_model_ids = [model['id'] for model in models]
+            # current_model_ids = [model['id'] for model in models]
 
-            missing_model_ids = [fixed_model_id for fixed_model_id in fixed_model_ids if
-                                 fixed_model_id not in current_model_ids]
+            # missing_model_ids = [fixed_model_id for fixed_model_id in fixed_model_ids if
+            #                      fixed_model_id not in current_model_ids]
 
-            if missing_model_ids:
-                raise ValidateFailedError("Please add deployments for '{}'.".format(", ".join(missing_model_ids)))
+            # if missing_model_ids:
+            #     raise ValidateFailedError("Please add deployments for '{}'.".format(", ".join(missing_model_ids)))
         except ValidateFailedError as e:
             raise e
         except AzureAuthenticationError:
