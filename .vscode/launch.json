@@ -1,0 +1,77 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "nvm-web",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/web",
+            "env": {
+                "NEXT_PUBLIC_DEPLOY_ENV": "PRODUCTION",
+                "NEXT_PUBLIC_EDITION": "SELF_HOSTED",
+                "NEXT_PUBLIC_API_PREFIX": "http://127.0.0.1:3000/console/api",
+                "NEXT_PUBLIC_PUBLIC_API_PREFIX": "http://127.0.0.1:3000/api"
+            },
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run",
+                "dev"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "next-web-client",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000"
+        },
+        {
+            "name": "flask-api",
+            "type": "python",
+            "request": "launch",
+            "module": "flask",
+            "env": {
+                "FLASK_APP": "api/app.py",
+                "FLASK_DEBUG": "1",
+                "GEVENT_SUPPORT": "True",
+                "COOKIE_SAMESITE": "Lax",
+                "COOKIE_SECURE": "false"
+            },
+            "args": [
+                "run",
+                "--no-debugger",
+                "--no-reload",
+                "-p",
+                "5001"
+            ],
+            "jinja": true,
+            "justMyCode": false,
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "celer-worker",
+            "type": "python",
+            "request": "launch",
+            "module": "celery.__main__",
+            "cwd": "${workspaceFolder}/api",
+            "env": {
+                "GEVENT_SUPPORT": "True"
+            },
+            "args": [
+                "-A",
+                "app.celery",
+                "worker",
+                "-P",
+                "gevent",
+                "-c",
+                "1",
+                "--loglevel",
+                "INFO"
+            ],
+            "console": "integratedTerminal"
+        }
+    ]
+}
